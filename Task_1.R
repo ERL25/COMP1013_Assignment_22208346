@@ -59,3 +59,5 @@ ggplot(freight_data, aes(x = product_weight_g, y = freight_value)) +
 
 #How strong is the relationship?
 cor(freight_data$product_weight_g, freight_data$freight_value) #Pearson looks at a straight-line relationship.
+cor(freight_data$product_weight_g, freight_data$freight_value, method = "spearman") #Spearman uses ranks, so extreme values affect it less.
+
