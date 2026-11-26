@@ -9,8 +9,8 @@ output: word_document
 library(tidyverse)
 
 #Load the data
-orders = read_csv("C:/Users/RL/Documents/COMP1013_Assignment_22208346/orders.csv")
-customers = read_csv("C:/Users/RL/Documents/COMP1013_Assignment_22208346/customers.csv")
+orders = read_csv("orders.csv")
+customers = read_csv("customers.csv")
 ```
 Orders by status. \n
 Count the orders in each status and work out the percentage of all orders

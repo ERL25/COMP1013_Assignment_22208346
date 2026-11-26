@@ -4,8 +4,8 @@
 library(tidyverse)
 
 #Load the data
-order_items = read_csv("C:/Users/RL/Documents/COMP1013_Assignment_22208346/order_items.csv")
-products = read_csv("C:/Users/RL/Documents/COMP1013_Assignment_22208346/products.csv")
+order_items = read_csv("order_items.csv")
+products = read_csv("products.csv")
 
 #Price distribution
 #Mean and median of every item price
@@ -60,4 +60,3 @@ ggplot(freight_data, aes(x = product_weight_g, y = freight_value)) +
 #How strong is the relationship?
 cor(freight_data$product_weight_g, freight_data$freight_value) #Pearson looks at a straight-line relationship.
 cor(freight_data$product_weight_g, freight_data$freight_value, method = "spearman") #Spearman uses ranks, so extreme values affect it less.
-
