@@ -42,6 +42,12 @@ orders_customers = orders %>%
 ```
 
 ```{r}
+nrow(orders)
+nrow(orders_customers)
+n_distinct(customers$customer_id) == nrow(customers) #TRUE means customer_id is unique
+```
+Left join keeps every order, so the row count should not change, and customer_id must be unique in customers for this to hold.
+```{r}
 state_summary = orders_customers %>%
   group_by(customer_state) %>%
   summarise(orders = n(),
@@ -49,12 +55,22 @@ state_summary = orders_customers %>%
   arrange(desc(percent_not_delivered))
 state_summary
 ```
+
 Bar chart, states ordered from highest to lowest
 ```{r}
 ggplot(state_summary) +
   geom_col(aes(x = reorder(customer_state, -percent_not_delivered),
-               y = percent_not_delivered)) +
+               y = percent_not_delivered)) + coord_flip() +
   labs(title = "Percentage of orders not delivered by customer state",
+       x = "Customer state", y = "Percentage not delivered")
+```
+```{r}
+state_summary %>%
+  filter(orders > 500) %>%
+  ggplot() +
+  geom_col(aes(x = reorder(customer_state, -percent_not_delivered),
+               y = percent_not_delivered)) + coord_flip() +
+  labs(title = "Percentage of orders not delivered by customer state (states with more than 500 orders)",
        x = "Customer state", y = "Percentage not delivered")
 ```
 

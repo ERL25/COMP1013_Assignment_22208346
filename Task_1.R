@@ -57,6 +57,8 @@ ggplot(freight_data, aes(x = product_weight_g, y = freight_value)) +
   labs(title = "Freight value against product weight",
        x = "Product weight (g)", y = "Freight value")
 
-#How strong is the relationship?
+#How strong is the relationship:
+quantile(freight_data$product_weight_g, 0.75) #75% of items weigh this much or less
+max(freight_data$product_weight_g) #heaviest item
 cor(freight_data$product_weight_g, freight_data$freight_value) #Pearson looks at a straight-line relationship.
 cor(freight_data$product_weight_g, freight_data$freight_value, method = "spearman") #Spearman uses ranks, so extreme values affect it less.

@@ -31,6 +31,10 @@ orders %>%
 orders_customers = orders %>%
   left_join(customers, by = "customer_id")
 
+nrow(orders)
+nrow(orders_customers)
+n_distinct(customers$customer_id) == nrow(customers) #TRUE means customer_id is unique
+
 state_summary = orders_customers %>%
   group_by(customer_state) %>%
   summarise(orders = n(),

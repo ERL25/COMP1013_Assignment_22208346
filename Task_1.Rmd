@@ -30,7 +30,7 @@ order_items %>%
   ggplot() +
   geom_histogram(aes(x = price), binwidth = 20, fill = "steelblue", colour = "white") +
   geom_vline(xintercept = mean_price, colour = "red") + #mean
-  geom_vline(xintercept = median_price, colour = "darkgreen") + #median
+  geom_vline(xintercept = median_price, colour = "green4") + #median
   labs(title = "Distribution of item prices (items under 1000)",
        x = "Price", y = "Number of items")
 ```
@@ -72,6 +72,8 @@ ggplot(freight_data, aes(x = product_weight_g, y = freight_value)) +
 ```
 How strong is the relationship:
 ```{r}
+quantile(freight_data$product_weight_g, 0.75) #75% of items weigh this much or less
+max(freight_data$product_weight_g) #heaviest item
 cor(freight_data$product_weight_g, freight_data$freight_value) #Pearson looks at a straight-line relationship.
 cor(freight_data$product_weight_g, freight_data$freight_value, method = "spearman") #Spearman uses ranks, so extreme values affect it less.
 ```
